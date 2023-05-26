@@ -79,12 +79,7 @@ fun WeatherDataHeaderCard(weatherData: WeatherData){
 
 @Composable
 fun WeatherDataOtherCard(weatherData: WeatherData){
-    Card(modifier = Modifier
-        .background(
-            color = MaterialTheme.colorScheme.primary,
-        )
-        .padding(top = 24.dp),
-        elevation = 4.dp,){
+    Card(elevation = 4.dp,){
         Column(modifier = Modifier.padding(16.dp,16.dp)){
             Row(
                 modifier = Modifier.fillMaxWidth(),

@@ -23,7 +23,6 @@ fun ByCitySearch(getData:(Context, String)->Unit,context: Context){
     var cityName by remember {
         mutableStateOf("i")
     }
-    getData(context,"sirohi")
     Column {
         TextField(value = cityName, onValueChange = {cityName = it}, colors = TextFieldDefaults.textFieldColors(
             backgroundColor = Color.White

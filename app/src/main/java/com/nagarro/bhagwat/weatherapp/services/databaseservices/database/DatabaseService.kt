@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.catch
 
 class DatabaseService(var mContext:Context){
     var database: WeatherDatabase = WeatherDatabase.getInstance(mContext)
-
      fun getWeatherDataList(): Flow<List<WeatherData>> {
         return database.weatherDataDAO().getAllWeatherDataList().catch {
              emit(listOf())

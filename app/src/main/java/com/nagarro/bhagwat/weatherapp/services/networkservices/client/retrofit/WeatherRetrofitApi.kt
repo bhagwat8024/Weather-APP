@@ -1,6 +1,7 @@
 package com.nagarro.bhagwat.weatherapp.services.networkservices.client.retrofit
 
 import com.nagarro.bhagwat.weatherapp.model.WeatherApiResponse
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
