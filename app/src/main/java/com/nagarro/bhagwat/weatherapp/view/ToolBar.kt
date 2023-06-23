@@ -2,6 +2,7 @@ package com.nagarro.bhagwat.weatherapp.view
 
 import android.content.Context
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.icons.Icons
@@ -23,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.nagarro.bhagwat.weatherapp.model.WeatherData
 
 @Composable
-fun ToolBar(weatherData:WeatherData?,getData:(Context, String)->Unit,context:Context){
+fun ToolBar(weatherData:WeatherData?,getData:(Context, String)->Unit,context:Context,reloadData:(Context)->Unit){
     var addButtonExpanded by remember {
         mutableStateOf(false)
     }
@@ -40,7 +41,9 @@ fun ToolBar(weatherData:WeatherData?,getData:(Context, String)->Unit,context:Con
             Color.White,
             Color.White),
         navigationIcon = {
-            Icon(Icons.Filled.Menu, contentDescription = "Menu")
+            IconButton(onClick = {reloadData(context)}) {
+                Icon(Icons.Filled.Refresh, contentDescription = "Refresh")
+            }
         },
         actions = {
             IconButton(onClick = { addButtonExpanded = !addButtonExpanded }) {
@@ -59,3 +62,17 @@ fun AddButtonMenu(expanded:Boolean,changeExpanded:(isExpanded:Boolean)->Unit,get
        }
    }
 }
+
+@Composable
+fun Loading(){
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        CircularProgressIndicator(
+            color = Color.Black,
+            strokeWidth = 4.dp
+        )
+    }
+}
+

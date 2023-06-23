@@ -7,6 +7,7 @@ import com.nagarro.bhagwat.weatherapp.model.WeatherData
 @Database(entities = [WeatherData::class], exportSchema = false, version = 1)
 @TypeConverters(ListTypeConverter::class)
 abstract class WeatherDatabase:RoomDatabase() {
+
     companion object{
 
         private const val DBNAME = "Weather_db"
@@ -22,6 +23,7 @@ abstract class WeatherDatabase:RoomDatabase() {
             }
             return instance!!
         }
+
     }
 
     abstract fun weatherDataDAO(): WeatherDataDAO

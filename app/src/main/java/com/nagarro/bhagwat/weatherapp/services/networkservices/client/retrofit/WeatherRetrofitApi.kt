@@ -12,4 +12,7 @@ interface WeatherRetrofitApi {
 
     @GET("current")
     suspend fun getByCityName(@Query("city") city:String,@Query("key") apiKey:String):Response<WeatherApiResponse>
+
+    @GET("current")
+    suspend fun getByLatLon(@Query("lat") lat:Double,@Query("lon") lon:Double,@Query("key") apiKey:String):Response<WeatherApiResponse>
 }

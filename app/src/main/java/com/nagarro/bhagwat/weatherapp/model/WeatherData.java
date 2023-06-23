@@ -6,6 +6,7 @@ import androidx.room.Entity;
 
 import java.util.List;
 
+
 @Entity(primaryKeys = {"lat","lon"},tableName = "WeatherData")
 public class WeatherData {
         private double lat;

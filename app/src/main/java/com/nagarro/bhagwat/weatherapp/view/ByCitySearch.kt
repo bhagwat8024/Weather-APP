@@ -20,9 +20,11 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ByCitySearch(getData:(Context, String)->Unit,context: Context){
+
     var cityName by remember {
         mutableStateOf("i")
     }
+
     Column {
         TextField(value = cityName, onValueChange = {cityName = it}, colors = TextFieldDefaults.textFieldColors(
             backgroundColor = Color.White
@@ -31,4 +33,5 @@ fun ByCitySearch(getData:(Context, String)->Unit,context: Context){
             Text(text = "Add")
         }
     }
+
 }

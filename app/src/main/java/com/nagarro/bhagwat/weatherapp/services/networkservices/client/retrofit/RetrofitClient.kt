@@ -9,7 +9,7 @@ import com.nagarro.bhagwat.weatherapp.services.networkservices.client.NetworkCli
 import retrofit2.awaitResponse
 
 class RetrofitClient: NetworkClient {
-    val NO_CONTENT_CODE = 204
+    private val NO_CONTENT_CODE = 204
 
     private val client: WeatherRetrofitApi = RetrofitHelper.getInstance().create(WeatherRetrofitApi::class.java)
 
@@ -30,6 +30,20 @@ class RetrofitClient: NetworkClient {
     @Throws(CityNotFoundException::class,ConnectionNotFoundException::class)
     override suspend fun getDataByPincode(context: Context, pincode: Long): WeatherApiResponse? {
         var apiResponse = client.getByPinCode(pincode,API_KEY)
+
+        if(apiResponse.isSuccessful){
+            if(apiResponse.code()==NO_CONTENT_CODE) {
+                throw CityNotFoundException("City Not Found")
+            }
+            return apiResponse.body()
+        }
+        else{
+            throw ConnectionNotFoundException("Connection Not Found")
+        }
+    }
+    @Throws(CityNotFoundException::class,ConnectionNotFoundException::class)
+    override suspend fun getDataByLatLon(context: Context, lat:Double , lon:Double): WeatherApiResponse? {
+        var apiResponse = client.getByLatLon(lat,lon, API_KEY)
 
         if(apiResponse.isSuccessful){
             if(apiResponse.code()==NO_CONTENT_CODE) {
